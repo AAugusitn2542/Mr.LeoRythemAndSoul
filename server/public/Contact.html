@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Band</title>
+    <link rel = "stylesheet" href="style.css">
+    <script src="/scripts/header.js" defer></script>
+
+    
+</head>
+<body>
+  <header></header>
+<section class="contact-form">
+    <h2>Contact Us</h2>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" placeholder="name" required>
+  
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" placeholder="email" required>
+  
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="How can we help you?"></textarea>
+      <input type="hidden" name="access_key" value="e0b1840f-58b6-45d3-a837-01f9d2764df6">
+      <button type="submit">Send Message</button>
+      <script src = "https://smtpjs.com/v3/smtp.js"> </script>
+    </form>
+  </section>
+</body>
+</html>

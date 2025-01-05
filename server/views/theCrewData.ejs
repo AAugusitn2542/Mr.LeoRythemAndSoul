@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MrLeoRythmAndSoul</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/scripts/header.js" defer></script>
+</head>
+<body>
+  <header></header>
+  <section class="bandmembers">
+    <h2>Meet the Band Members</h2>
+    <% for (let Band of Bands) { %>
+      <div class="bandmember-item">
+        <div class="grid-item">
+          <img src="<%= Band.photo %>" alt="<%= Band.name %>">
+          <div class="bandmember-info">
+            <h3><%= Band.name %></h3>
+            <p>Instrument: <%= Band.instrument %></p>
+            <% if (Band.email) { %>
+              <p>Email: <a href="mailto:<%= Band.email %>"><%= Band.email %></a></p>
+            <% } %>
+            <a href="<%= Band.page %>" class="view-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </section>
+  
+</body>
+</html>

@@ -1,0 +1,480 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: cursive;
+  text-align: center;
+
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+
+/*section for the nav space*/
+
+.band-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #030303;
+  border-bottom: 1px solid #811919;
+  margin-bottom: 50px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.menu {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+a {
+  background-image: linear-gradient(to right,
+      #54b3d6,
+      #54b3d6 50%,
+      #f0ebeb 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Actually hover */
+a:hover {
+  background-position: 0;
+}
+
+a:hover::before {
+  width: 100%;
+}
+
+
+
+/* Make the slider cover the full width and height of the screen */
+.slider {
+  width: 100%;
+  /* Full width */
+  height: 100vh;
+  /* Full viewport height */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%;
+  /* Adjust for number of slides */
+  height: 100%;
+}
+
+.slide {
+  flex: 1 0 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  /* Full width of container */
+  height: 100%;
+  /* Full height of container */
+  object-fit: contain;
+  /* Ensures the entire image fits within the container */
+  object-position: center;
+  /* Center the image within the container */
+  background-color: rgb(255, 255, 255);
+  /* Optional: add a background color to fill the empty space */
+}
+
+/* Tour Date Section*/
+.tour-dates {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.tour-dates h1 {
+  font-size: 3rem;
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: bold;
+  
+}
+
+.tour-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+.date {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.details {
+  flex-grow: 1;
+  padding: 0 20px;
+}
+
+.event {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.tickets-button {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tickets-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+
+div.gallery {
+  border: 1px solid #fffcfc;
+}
+
+div.gallery:hover {
+  border: 1px solid #131212;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Meet the Band Members Section */
+.bandmembers {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bandmember-item {
+  display: flex;
+  align-items: center; /* Align content vertically */
+  gap: 200px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.bandmembers h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  background-color: #000000;
+  color: #fff;
+  padding: 10px;
+}
+
+
+.bandmember-info {
+  flex: 1; /* Ensures text container takes the remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bandmember-info h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bandmember-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.bandmember-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block; /* Ensures no inline spacing issues */
+}
+
+
+
+
+
+/* Live Performances Section */
+.live-performances {
+  padding: 50px;
+  text-align: center;
+}
+
+.live-performances h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column; /* Change from row to column layout */
+  justify-content: center; /* Center videos vertically */
+  align-items: center; /* Center videos horizontally */
+  gap: 20px; /* Add space between the videos */
+}
+.video-player {
+  width: 80%;
+  height: auto;
+  max-width: 800px;
+  border-radius: 8px;
+}
+
+.minimize-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f1f1f1;
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.minimized {
+  width: 200px;
+  height: auto;
+}
+
+
+.bigmic-container {
+  display: flex;
+  margin-top: 100px;
+  align-items: center;
+  /* Centers the image and text horizontally */
+  flex-direction: column;
+  text-align: center;
+  /* Centers the text itself */
+
+}
+
+.bigmic-container h1 {
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.bigmic-txt {
+  margin-top: 20px;
+  max-width: 40%;
+  margin-bottom: 20px;
+}
+
+
+
+/*--------------------------------------------------------------------------------------*/
+
+
+.contact-form {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #45a049;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contact-form button:hover {
+  background-color: #3e8e41;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Css for Contact Form */
+
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text],
+select,
+textarea {
+  width: 100%;
+  /* Full width */
+  padding: 12px;
+  /* Some padding */
+  border: 1px solid rgb(255, 255, 255);
+  /* Gray border */
+  border-radius: 4px;
+  /* Rounded borders */
+  box-sizing: border-box;
+  /* Make sure that padding and width stays in place */
+  margin-top: 6px;
+  /* Add a top margin */
+  margin-bottom: 16px;
+  /* Bottom margin */
+  resize: vertical
+    /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  width: 450px;
+  height: 300px;
+  padding: 20px;
+  object-fit: hidden;
+  object-position: center;
+  position: absolute;
+}
+
+#wrapper {
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+
+#content {
+  display: block;
+  width: 80%;
+  margin: auto;
+}
