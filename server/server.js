@@ -1,9 +1,12 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { pool } from './config/database.js'; // Import pool for database connection
 
-//Import restaurant data into data/restaurants.js 
-import theCrewData from './data/theCrewData.js'
+
+//Import Crew & Tour data 
+import theCrewData from './data/theCrewData.js';
+//import tourDate from './data/tourDate.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,8 +28,10 @@ app.get('/Home', (req, resp) => { /* Define the GET route for the URL | when vis
     resp.sendFile(path.join(__dirname, 'public', 'Home.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
-app.get("/Tour", (req,resp) => { /* Define the GET route for the URL | when visited its triggerd */
-    resp.sendFile(path.join(__dirname, 'public', 'Tour.html')); /* Tells Express to send the file as resp to the browers aka client */
+
+// Serve the static HTML file
+app.get("/Tour", (req, resp) => {
+    resp.sendFile(path.join(__dirname, 'public', 'Tour.html'));
 });
 
 app.get("/Video", (req,resp) => { /* Define the GET route for the URL | when visited its triggerd */
@@ -49,7 +54,16 @@ app.get("/Cody", (req,resp) => { /* Define the GET route for the URL | when visi
     resp.sendFile(path.join(__dirname, 'public', 'Cody.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
-
+app.get('/tour-dates', async (req, res) => {
+    console.log('GET /tour-dates triggered');
+    try {
+        const result = await pool.query('SELECT * FROM tour_dates');
+        res.json(result.rows); // Sends the database rows as JSON to the frontend
+    } catch (error) {
+        console.error('Error fetching tour dates:', error);
+        res.status(500).send('Server error');
+    }
+});
 
 app.get('/theCrew', (req, res) => {
     console.log(theCrewData);
