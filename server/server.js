@@ -23,6 +23,14 @@ app.set("view engine", "ejs"); /*Tells express to use EJS for rendering views */
 app.set("views", path.join(__dirname, 'views')); /*Look for the EJS TEMPLATES in views folder*/
 
 
+
+app.get('/', (req, res) => {
+  res.render('index'); // Assumes there's an 'index.ejs' in your 'views' folder
+});
+
+
+
+
 // Setting the paths for each file
 app.get('/Home', (req, resp) => { /* Define the GET route for the URL | when visited its triggerd */
     resp.sendFile(path.join(__dirname, 'public', 'Home.html')); /* Tells Express to send the file as resp to the browers aka client */
