@@ -3,45 +3,19 @@
 <head>
     <title>MrLeoRythemAndSoul</title>
     <link rel = "stylesheet" href="style.css">
-      <script src="/scripts/header.js" defer></script>
+    <script src="/scripts/header.js" defer></script>
 </head>
 <body>
   <header></header>
     <!-- Band Picture Section -->
     <!-- Image Slider Section -->
     <section class="hero">
-      <div class="slider">
-          <div class="slides">
-              <div class="slide">
-                  <img src="/images/fbgrouppic.jpg" alt="Band Image 1">
-              </div>
-              <div class="slide">
-                  <img src="/images/fbgrouppic02.jpg" alt="Band Image 2">
-              </div>
-              <div class="slide">
-                  <img src="/images/fbgrouppic03.jpg" alt="Band Image 3">
-              </div>
-              <div class="slide">
-                <img src="/images/gallerypic04.jpg" alt="Band Image 4">
-            </div>
-            <div class="slide">
-                <img src="/images/gallerypic05.jpg" alt="Band Image 5">
-            </div>
-          </div>
-      </div>
+    <div class="hero-content">
+      <h1>Mr Leo Rythem <br/> & 
+        Soul Band</h1>
+      <button class="btn">Download</button>
+    </div>
   </section>
-  <script>
-    let currentIndex = 0;
-    const slides = document.querySelector('.slides');
-    const totalSlides = document.querySelectorAll('.slide').length;
-
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    setInterval(showNextSlide, 3000); // Change slide every 3 seconds
-</script>
 
 <section class="tour-dates">
   <h1>Tour Dates</h1>

@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, 'views')); /*Look for the EJS TEMPLATES in
 
 
 // Setting the paths for each file
-app.get('/Home', (req, resp) => { /* Define the GET route for the URL | when visited its triggerd */
+app.get('/', (req, resp) => { /* Define the GET route for the URL | when visited its triggerd */
     resp.sendFile(path.join(__dirname, 'public', 'Home.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
@@ -76,6 +76,5 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-server.keepAliveTimeout = 120000; // 2 minutes
-server.headersTimeout = 120000; // 2 minutes
+
 
