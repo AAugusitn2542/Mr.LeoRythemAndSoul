@@ -27,7 +27,7 @@ app.get('/', (req, resp) => { /* Define the GET route for the URL | when visited
     resp.sendFile(path.join(__dirname, 'public', 'Home.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
-app.get("/Home", (_req, res) => res.redirect(301, "/"));
+
 
 
 // Serve the static HTML file
