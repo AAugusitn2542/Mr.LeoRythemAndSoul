@@ -1,0 +1,378 @@
+/* ---- Base ---- */
+.gallery-section {
+  min-height: 100vh;
+  padding: 80px 5vw 60px;
+  background: radial-gradient(circle at top left, #7b5cff, #4b1ba7 40%, #12052b);
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gallery-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.gallery-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.music-icon {
+  font-size: 1.8rem;
+}
+
+/* subtitle */
+.gallery-subtitle {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* ---- Filter buttons ---- */
+.gallery-filters {
+  display: inline-flex;
+  gap: 10px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.filter-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: transparent;
+  color: #f4f4ff;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: #f72585;
+  color: #fff;
+}
+
+/* ---- Gallery grid ---- */
+.gallery-grid {
+  margin: 40px auto 0;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  aspect-ratio: 1/1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* For filtering */
+.gallery-item.hidden {
+  display: none;
+}
+
+/* ---- Lightbox ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* content */
+.lightbox-inner {
+  position: relative;
+  max-width: 900px;
+  max-height: 90vh;
+  width: 90%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-image {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  background: #000;
+}
+
+/* caption bar at bottom like screenshot */
+.lightbox-caption {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 16px 20px 18px;
+  text-align: center;
+}
+
+.lightbox-caption h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.lightbox-caption p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* close button */
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+  .gallery-section {
+    padding-top: 60px;
+  }
+
+  .gallery-title h1 {
+    font-size: 1.6rem;
+  }
+
+  .gallery-filters {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---- Performance Section (Same as Gallery) ---- */
+.performance-section {
+  min-height: 100vh;
+  padding: 80px 5vw 60px;
+  background: radial-gradient(circle at top left, #7b5cff, #4b1ba7 40%, #12052b);
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.performance-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.performance-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.music-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.performance-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* ---- Performance Grid (Same as Gallery Grid) ---- */
+.performance-grid {
+  margin: 40px auto 0;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.performance-item {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  aspect-ratio: 1 / 1;
+}
+
+.performance-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.5);
+}
+
+/* Video Thumbnail */
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #f72585;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-shadow: 0 0 20px rgba(247, 37, 133, 0.5);
+}
+
+.performance-item:hover .play-button {
+  opacity: 1;
+}
+
+/* Performance Info (hide by default, show on hover) */
+.performance-info {
+  position: absolute;
+  inset: 0;
+  padding: 30px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.95));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.performance-item:hover .performance-info {
+  opacity: 1;
+}
+
+.performance-info h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+}
+
+.perf-date {
+  color: #c77dff;
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+
+.perf-description {
+  color: #e0b0ff;
+  margin: 0 0 15px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.watch-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white !important;
+  padding: 10px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.watch-btn:hover {
+  background: linear-gradient(135deg, #b366ff, #e0b0ff);
+  transform: translateY(-2px);
+}
+
+/* Instagram Embed */
+.instagram-embed-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.instagram-embed-wrapper iframe {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .performance-section {
+    padding-top: 60px;
+  }
+
+  .performance-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+}

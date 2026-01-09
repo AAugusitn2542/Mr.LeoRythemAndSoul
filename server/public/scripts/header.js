@@ -5,15 +5,16 @@ let header = document.querySelector('header');
 header.innerHTML = `
   <div class="band-header">
     <div class="logo">
-      <a href="/Home" class="logo">
+      <a href="/" class="logo">
         <span>MrLeoRythmAndSoulBand</span>
       </a>
     </div>
     <nav class="menu">
       <a href="/Tour">Shows</a>
-      <a href="/Video">Video</a>
+      <a href="/Performance">Performance</a>
       <a href="/theCrew">The Crew</a> 
-      <a href="#">Subscribe</a>
+      <a href="/Gallery">Gallery</a>
+      
       <a href="/Contact.html">Contact</a>
     </nav>
     <div class="social-icons">
@@ -29,3 +30,5 @@ header.innerHTML = `
     </div>
   </div>
 `;
+
+

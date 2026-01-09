@@ -36,14 +36,11 @@ const insertData = async () => {
         console.log('Adding initial data...');
         const insertQuery = `
             INSERT INTO tour_dates (date, status, location) VALUES 
-            ('DEC 1, 2024', 'To Be Determined', 'San Francisco, CA'),
             ('DEC 3, 2024', 'To Be Determined', 'San Jose, CA'),
             ('DEC 6, 2024', 'To Be Determined', 'Santa Cruz, CA'),
             ('DEC 10, 2024', 'To Be Determined', 'Los Gatos, CA'),
             ('DEC 15, 2024', 'To Be Determined', 'Holister, CA'),
             ('DEC 26, 2024', 'To Be Determined', 'Palo Alto, CA'),
-            ('TBA', 'To Be Determined', 'Fresno, CA'),
-            ('TBA', 'To Be Determined', 'Stockton, CA');
         `;
         await pool.query(insertQuery);
         console.log('Added initial tour dates');

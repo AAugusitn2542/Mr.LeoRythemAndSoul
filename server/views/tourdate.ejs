@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MrLeoRythmAndSoul - Tour Dates</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/scripts/header.js" defer></script>
+</head>
+<body>
+  <header></header>
+  
+  <section class="tour-section">
+    <div class="tour-header">
+      <div class="calendar-icon">📅</div>
+      <h2>Tour Dates</h2>
+      <p class="tour-tagline">Join us live! Experience the energy, the music, and the magic. Find a show near you.</p>
+    </div>
+
+    <div class="tour-stats">
+      <div class="stat">
+        <div class="stat-number"><%= tours.length %></div>
+        <div class="stat-label">Total Shows</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><%= tours.filter(t => t.status === 'On Sale').length %></div>
+        <div class="stat-label">On Sale</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><%= tours.filter(t => t.status === 'Sold Out').length %></div>
+        <div class="stat-label">Sold Out</div>
+      </div>
+    </div>
+
+    <div class="tour-controls">
+      <div class="search-box">
+        <input type="text" id="tourSearch" placeholder="Search by city, venue, or state..." class="search-input">
+      </div>
+      <div class="filter-dropdown">
+        <button class="filter-btn">All Shows ▼</button>
+        <div class="dropdown-menu" id="filterMenu">
+          <div class="filter-option" data-filter="all">All Shows</div>
+          <div class="filter-option" data-filter="on-sale">On Sale</div>
+          <div class="filter-option" data-filter="limited">Limited Tickets</div>
+          <div class="filter-option" data-filter="sold-out">Sold Out</div>
+          <div class="filter-option" data-filter="tba">TBA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tour-list">
+      <% tours.forEach((tour, index) => { %>
+        <div class="tour-card" data-status="<%= tour.status.toLowerCase().replace(' ', '-') %>">
+          <div class="tour-date-box">
+            <div class="date-month"><%= tour.dateMonth %></div>
+            <div class="date-day"><%= tour.dateDay %></div>
+            <div class="date-year"><%= tour.dateYear %></div>
+          </div>
+
+          <div class="tour-info">
+            <h3 class="venue-name"><%= tour.venue %></h3>
+            <p class="venue-location">📍 <%= tour.city %>, <%= tour.state %></p>
+            
+            <% if (tour.eventType) { %>
+              <p class="event-type">⭐ <%= tour.eventType %></p>
+            <% } %>
+
+            <% if (tour.dayOfWeek) { %>
+              <p class="day-of-week">📅 <%= tour.dayOfWeek %></p>
+            <% } %>
+
+            <p class="capacity-price">
+              <span>👥 <%= tour.capacity %></span>
+              <span>💵 <%= tour.priceRange %></span>
+            </p>
+          </div>
+
+          <div class="tour-status-badge" data-badge-color="<%= tour.badgeColor %>">
+            <%= tour.status %>
+          </div>
+
+          <div class="tour-details-link">Click for details →</div>
+        </div>
+
+        <!-- Modal for tour details -->
+        <div class="event-modal" id="modal-<%= index %>">
+          <div class="modal-content">
+            <span class="modal-close" data-index="<%= index %>">✕</span>
+            
+            <div class="modal-image">
+              <img src="<%= tour.image %>" alt="<%= tour.venue %>">
+            </div>
+
+            <div class="modal-body">
+              <h2><%= tour.venue %></h2>
+              <p class="modal-location">📍 <%= tour.city %>, <%= tour.state %></p>
+
+              <div class="modal-details">
+                <div class="detail-group">
+                  <h4>Date & Time</h4>
+                  <p><%= tour.fullDate %></p>
+                  <p class="doors-time">Doors open at <%= tour.doorsOpenTime %></p>
+                </div>
+
+                <div class="detail-group">
+                  <h4>Status</h4>
+                  <p><span class="status-badge" data-badge-color="<%= tour.badgeColor %>" style="color: white; padding: 4px 12px; border-radius: 20px; display: inline-block;"><%= tour.status %></span></p>
+                </div>
+
+                <div class="detail-group">
+                  <h4>Venue Capacity</h4>
+                  <p>👥 <%= tour.capacity %> people</p>
+                </div>
+
+                <div class="detail-group">
+                  <h4>Ticket Price</h4>
+                  <p><%= tour.priceRange %></p>
+                </div>
+              </div>
+
+              <div class="modal-buttons">
+                <button class="buy-tickets-btn">🎫 Buy Tickets</button>
+                <button class="view-map-btn">📍 View on Map</button>
+                <button class="share-btn">↗️</button>
+              </div>
+
+              <div class="modal-info">
+                <p><strong>Age Restriction:</strong> <%= tour.ageRestriction %></p>
+                <p><strong>Parking:</strong> <%= tour.parking %></p>
+                <p><strong>Support Acts:</strong> <%= tour.supportActs %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <script>
+    // Apply badge colors from data attributes to avoid raw EJS inside style attributes (fixes parser errors)
+    document.querySelectorAll('[data-badge-color]').forEach(el => {
+      const color = el.getAttribute('data-badge-color');
+      if (color) {
+        el.style.backgroundColor = color;
+      }
+    });
+
+    function openModal(index) {
+      document.getElementById('modal-' + index).style.display = 'flex';
+    }
+
+    function closeModal(index) {
+      document.getElementById('modal-' + index).style.display = 'none';
+    }
+
+    // Attach close handlers to modal close buttons (use data-index to avoid inline EJS in attributes)
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = btn.getAttribute('data-index');
+        if (idx !== null) {
+          closeModal(idx);
+        }
+      });
+    });
+
+    // Click tour card to open modal
+    document.querySelectorAll('.tour-card').forEach((card, index) => {
+      card.addEventListener('click', () => openModal(index));
+    });
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.event-modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+
+    // Search functionality
+    document.getElementById('tourSearch').addEventListener('keyup', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      document.querySelectorAll('.tour-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+      });
+    });
+
+    // Filter functionality
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const filter = option.dataset.filter;
+        document.querySelectorAll('.tour-card').forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = card.dataset.status === filter ? 'flex' : 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

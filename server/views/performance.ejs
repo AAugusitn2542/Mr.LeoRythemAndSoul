@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MrLeoRythmAndSoul - Performances</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/gallery.css">
+  <script src="/scripts/header.js" defer></script>
+</head>
+<body>
+  <header></header>
+  
+  <section class="performance-section">
+    <div class="performance-header">
+      <div class="music-icon">🎬</div>
+      <h1>Live Performances & Videos</h1>
+      <p class="performance-subtitle">Watch us perform live and see behind-the-scenes moments</p>
+    </div>
+
+    <div class="performance-grid">
+      <% for (let perf of performances) { %>
+        <div class="performance-item">
+          <% if (perf.embed) { %>
+            <!-- Instagram Embed -->
+            <div class="instagram-embed-wrapper">
+              <%- perf.embedCode %>
+            </div>
+          <% } else { %>
+            <!-- Regular Video Item -->
+            <div class="video-thumbnail">
+              <img src="<%= perf.thumbnail %>" alt="<%= perf.name %>">
+              <div class="play-button">▶</div>
+            </div>
+            
+            <div class="performance-info">
+              <h3><%= perf.name %></h3>
+              <p class="perf-date"><%= perf.date %></p>
+              <p class="perf-description"><%= perf.description %></p>
+              <a href="<%= perf.video %>" class="watch-btn" target="_blank">Watch Video</a>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+<script async src="//www.instagram.com/embed.js"></script>
+</body>
+</html>

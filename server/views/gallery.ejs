@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MrLeoRythmAndSoul - Gallery</title>
+  
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/gallery.css">
+  
+  <script src="/scripts/header.js" defer></script>
+</head>
+<body>
+  <header></header>
+  <!-- Gallery Section -->
+<section class="gallery-section">
+  <div class="gallery-header">
+    <div class="gallery-title">
+      <span class="music-icon">♫</span>
+      <h1>Collective Gallery</h1>
+    </div>
+    
+    <p class="gallery-subtitle">
+      Experience the journey through our music, captured in moments of passion and rhythm
+    </p>
+
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all">All Photos</button>
+    </div>
+  </div>
+
+  <section class="gallery-section">
+  <div class="gallery-grid">
+    <% gallery.forEach(item => { %>
+      <figure class="gallery-item" data-title="<%= item.name %>">
+        <img src="<%= item.photo %>" alt="<%= item.name %>">
+      </figure>
+    <% }) %>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox hidden">
+  <div class="lightbox-backdrop"></div>
+
+  <div class="lightbox-inner">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+
+    <img class="lightbox-image" src="" alt="">
+
+    <div class="lightbox-caption">
+      <h3 id="lightbox-title">Title</h3>
+      <p id="lightbox-desc">Description</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Make sure this is AFTER the HTML above -->
+  <script src="/js/gallery.js"></script>
+</body>
+</html>

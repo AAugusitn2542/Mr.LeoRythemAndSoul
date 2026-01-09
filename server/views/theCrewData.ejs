@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MrLeoRythmAndSoul</title>
+  <title>MrLeoRythmAndSoul - Crew Data</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/scripts/header.js" defer></script>
 </head>
 <body>
   <header></header>
-  <section class="bandmembers">
-    <h2>Meet the Band Members</h2>
-    <% for (let Band of Bands) { %>
-      <div class="bandmember-item">
-        <div class="grid-item">
-          <img src="<%= Band.photo %>" alt="<%= Band.name %>">
-          <div class="bandmember-info">
-            <h3><%= Band.name %></h3>
-            <p>Instrument: <%= Band.instrument %></p>
-            <% if (Band.email) { %>
-              <p>Email: <a href="mailto:<%= Band.email %>"><%= Band.email %></a></p>
-            <% } %>
-            <a href="<%= Band.page %>" class="view-btn">View Details</a>
-          </div>
-        </div>
-      </div>
-    <% } %>
-  </section>
   
+  <section class="bandmembers">
+    <div class="bandmembers-header">
+      <div class="music-icon">♪♪</div>
+      <h2>Meet the Band Members</h2>
+      <p class="bandmembers-tagline"> Get to know the faces behind the sound.</p>
+    </div>
+
+    <div class="bandmembers-grid">
+      <% for (let Band of Bands) { %>
+        <div class="member-card">
+          <img src="<%= Band.photo %>" alt="<%= Band.name %>" class="member-image">
+          
+          <div class="member-overlay">
+            <div class="member-info">
+              <div class="member-role">
+                <span>♪</span>
+                <span><%= Band.instrument %></span>
+              </div>
+              <h3 class="member-name"><%= Band.name %></h3>
+              
+              <% if (Band.bio) { %>
+                <p class="member-bio"><%= Band.bio %></p>
+              <% } %>
+              
+              <div class="member-skills">
+                <% if (Band.skills && Array.isArray(Band.skills)) { %>
+                  <% Band.skills.forEach(skill => { %>
+                    <span class="skill-tag"><%= skill %></span>
+                  <% }); %>
+                <% } else { %>
+                  <span class="skill-tag"><%= Band.instrument %></span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <a href="<%= Band.page %>" class="view-details-btn">View Details</a>
+
+          <% if (Band.joinYear) { %>
+            <div class="badge">Since <%= Band.joinYear %></div>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
 </body>
 </html>

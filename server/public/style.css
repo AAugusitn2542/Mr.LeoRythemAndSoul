@@ -114,7 +114,6 @@ a:hover::before {
     }
 
 
-
 /* Make the slider cover the full width and height of the screen */
 .slider {
   width: 100%;
@@ -155,87 +154,451 @@ a:hover::before {
   /* Optional: add a background color to fill the empty space */
 }
 
-/* Tour Date Section*/
-.tour-dates {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+/* ===== TOUR SECTION ===== */
+
+.tour-section {
+  background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%);
+  min-height: 100vh;
+  padding: 60px 20px;
+  margin-top: 80px;
 }
 
-.tour-dates h1 {
-  font-size: 3rem;
-  text-align: left;
+.tour-header {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-icon {
+  font-size: 60px;
   margin-bottom: 20px;
-  font-weight: bold;
-  
+  display: inline-block;
 }
 
-.tour-item {
+.tour-section h2 {
+  font-size: 72px;
+  color: white;
+  margin: 20px 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.tour-tagline {
+  font-size: 18px;
+  color: #d4a5ff;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Stats */
+.tour-stats {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc;
-  padding: 15px 0;
+  justify-content: center;
+  gap: 60px;
+  margin: 50px 0 50px 0;
+  flex-wrap: wrap;
 }
 
-.date {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.details {
-  flex-grow: 1;
-  padding: 0 20px;
-}
-
-.event {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.location {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.tickets-button {
-  font-size: 0.9rem;
-  padding: 5px 10px;
-  border: 1px solid #000;
-  background: none;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.tickets-button:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-
-div.gallery {
-  border: 1px solid #fffcfc;
-}
-
-div.gallery:hover {
-  border: 1px solid #131212;
-}
-
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
-
-div.desc {
-  padding: 15px;
+.stat {
   text-align: center;
 }
 
-.responsive {
-  padding: 0 6px;
-  float: left;
-  width: 24.99999%;
+.stat-number {
+  font-size: 48px;
+  color: #b366ff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #d4a5ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Search and Filter */
+.tour-controls {
+  display: flex;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(179, 102, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: #b366ff;
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-btn {
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(179, 102, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(179, 102, 255, 0.2);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #1a0033;
+  border: 1px solid rgba(179, 102, 255, 0.3);
+  border-radius: 8px;
+  min-width: 150px;
+  z-index: 100;
+  margin-top: 5px;
+}
+
+.filter-btn:hover + .dropdown-menu,
+.dropdown-menu:hover {
+  display: block;
+}
+
+.filter-option {
+  padding: 12px 20px;
+  color: #d4a5ff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(179, 102, 255, 0.1);
+}
+
+.filter-option:last-child {
+  border-bottom: none;
+}
+
+.filter-option:hover {
+  background: rgba(179, 102, 255, 0.2);
+  color: white;
+}
+
+/* Tour List */
+.tour-list {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tour-card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(179, 102, 255, 0.2);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tour-card:hover {
+  border-color: #b366ff;
+  background: rgba(179, 102, 255, 0.15);
+  transform: translateX(10px);
+  box-shadow: 0 0 30px rgba(179, 102, 255, 0.2);
+}
+
+/* Date Box */
+.tour-date-box {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  padding: 15px 20px;
+  border-radius: 8px;
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.date-month {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.date-day {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.date-year {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Tour Info */
+.tour-info {
+  flex: 1;
+}
+
+.venue-name {
+  font-size: 24px;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.venue-location,
+.event-type,
+.day-of-week,
+.capacity-price {
+  color: #d4a5ff;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.capacity-price {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* Status Badge */
+.tour-status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Details Link */
+.tour-details-link {
+  color: #b366ff;
+  font-size: 12px;
+  margin-left: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.tour-card:hover .tour-details-link {
+  opacity: 1;
+}
+
+/* MODAL */
+.event-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #1a0033;
+  border: 1px solid rgba(179, 102, 255, 0.3);
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-body {
+  padding: 40px;
+  color: white;
+}
+
+.modal-body h2 {
+  font-size: 36px;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.modal-location {
+  color: #d4a5ff;
+  margin: 0 0 30px 0;
+}
+
+.modal-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.detail-group h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #b366ff;
+  letter-spacing: 1px;
+  margin: 0 0 8px 0;
+}
+
+.detail-group p {
+  color: #d4a5ff;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.doors-time {
+  color: #9d4edd;
+  font-size: 12px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.buy-tickets-btn,
+.view-map-btn,
+.share-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.buy-tickets-btn {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white;
+}
+
+.buy-tickets-btn:hover {
+  background: linear-gradient(135deg, #b366ff, #e0b0ff);
+  transform: scale(1.05);
+}
+
+.view-map-btn {
+  background: transparent;
+  border: 1px solid #b366ff;
+  color: #b366ff;
+}
+
+.view-map-btn:hover {
+  background: rgba(179, 102, 255, 0.1);
+}
+
+.share-btn {
+  background: transparent;
+  border: 1px solid #b366ff;
+  color: #b366ff;
+  padding: 12px;
+  width: 48px;
+  flex: none;
+}
+
+.modal-info {
+  background: rgba(179, 102, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.modal-info p {
+  color: #d4a5ff;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.modal-info strong {
+  color: #b366ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tour-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tour-date-box {
+    min-width: 100%;
+  }
+
+  .tour-details-link {
+    opacity: 1;
+    margin-left: 0;
+  }
+
+  .modal-details {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .share-btn {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -258,62 +621,260 @@ div.desc {
 }
 
 /* Meet the Band Members Section */
+/* ===== BAND MEMBERS SECTION ===== */
+
 .bandmembers {
-  width: 80%;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%);
+  min-height: 100vh;
+  padding: 60px 20px;
+  margin-top: 80px;
 }
 
-.bandmember-item {
-  display: flex;
-  align-items: center; /* Align content vertically */
-  gap: 200px;
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.bandmembers-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.music-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: #b366ff;
+  display: inline-block;
 }
 
 .bandmembers h2 {
-  font-size: 28px;
-  margin-bottom: 40px;
-  font-weight: bold;
-  background-color: #000000;
-  color: #fff;
-  padding: 10px;
+  font-size: 72px;
+  color: white;
+  margin: 20px 0 20px 0;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 
+.bandmembers-tagline {
+  font-size: 18px;
+  color: #d4a5ff;
+  line-height: 1.6;
+  margin: 0;
+}
 
-.bandmember-info {
-  flex: 1; /* Ensures text container takes the remaining space */
+/* Grid Layout */
+.bandmembers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Member Card Styling */
+.member-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 450px;
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-image {
+  transform: scale(1.05);
+}
+
+/* Overlay that appears on hover */
+.member-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 30px;
+  color: white;
+  transition: all 0.3s ease;
+  opacity: 0;
 }
 
-.bandmember-info h3 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bold;
+.member-card:hover .member-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.95));
+  opacity: 1;
 }
 
-.bandmember-info p {
-  margin: 5px 0;
-  color: #555;
+/* Member Info */
+.member-info {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease 0.1s;
 }
 
-.bandmember-item img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block; /* Ensures no inline spacing issues */
+.member-card:hover .member-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.member-role {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #c77dff;
+  margin-bottom: 10px;
+}
+
+.member-name {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  color: white;
+}
+
+.member-bio {
+  font-size: 14px;
+  color: #e0b0ff;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+
+/* Skill Tags */
+.member-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.skill-tag:hover {
+  background: linear-gradient(135deg, #b366ff, #e0b0ff);
+  transform: translateY(-2px);
+}
+
+/* Badge (Since Year) */
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #000000, #c77dff);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.member-card:hover .badge {
+  transform: scale(1.1);
+}
+
+/* View Details Button */
+.view-details-btn {
+  display: none;
 }
 
 
+.member-card:hover .view-details-btn {
+  opacity: 1;
+}
+
+.view-details-btn:hover {
+  background: linear-gradient(135deg, #b366ff, #e0b0ff);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .bandmembers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bandmembers {
+    padding: 40px 15px;
+    margin-top: 70px;
+  }
+
+  .bandmembers h2 {
+    font-size: 48px;
+  }
+
+  .bandmembers-tagline {
+    font-size: 16px;
+  }
+
+  .music-icon {
+    font-size: 48px;
+  }
+
+  .bandmembers-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .member-card {
+    height: 350px;
+  }
+
+  .member-name {
+    font-size: 24px;
+  }
+
+  .member-role {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bandmembers {
+    padding: 30px 10px;
+    margin-top: 60px;
+  }
+
+  .bandmembers h2 {
+    font-size: 36px;
+  }
+
+  .member-card {
+    height: 300px;
+  }
+
+  .member-name {
+    font-size: 20px;
+  }
+
+  .member-overlay {
+    padding: 20px;
+  }
+}
 
 
 
@@ -433,16 +994,6 @@ div.desc {
 .contact-form button:hover {
   background-color: #3e8e41;
 }
-
-
-
-
-
-
-
-
-
-
 
 /* Css for Contact Form */
 
