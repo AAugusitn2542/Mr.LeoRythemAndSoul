@@ -21,7 +21,37 @@ router.get('/tour-dates/:id', (req, res) => { // setting up a GET request to obt
     }
 }); // the if statement checks if there a resturant with a asked id exist if true the server returns the data if not return not found
 
-// Define route to create a new Tour Date
+router.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+router.post('/contact', async (req, res) => {
+  const { name, email, phone, eventDate, eventType, venue, message } = req.body;
+
+  // Validate required fields
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+    try {
+    // Save inquiry to the database
+    const newInquiry = new Inquiry({
+        name,
+        email,
+        phone,
+        eventDate,
+        eventType,
+        venue,
+        message
+    });
+    await newInquiry.save();
+    res.status(201).json({ message: 'Inquiry submitted successfully' });
+    } catch (error) {
+    res.status(500).json({ error: 'Server error. Please try again later.' });
+    }
+});
+
+/*Define route to create a new Tour Date
 router.post('/tour-dates', (req, res) => {
     
     const newTourDate = req.body; // no idea what does this...
@@ -43,6 +73,7 @@ router.delete('/restaurants/:id', (req, res) => {
         res.status(404).json({ error: error.message });
     }
 });
+*/
 
 
 export {router as backendRouter};

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MrLeoRythmAndSoul - Book Us</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/scripts/header.js" defer></script>
+</head>
+<body>
+  <header></header>
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h1>Send Us a Message</h1>
+        <p>Ready to book MrLeoRythmAndSoul for your event? Fill out the form below and we'll get back to you soon!</p>
+      </div>
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Book The Band</h1>
+            <p>Looking to make your event unforgettable? Get in touch with our booking manager and let's create something amazing together.</p>
+        </div>
+    </section>
+
+    <div class="contact-container">
+        <div class="contact-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Send Us a Message</h2>
+
+                <% if (successMessage) { %>
+                    <div class="alert alert-success">
+                        <span class="icon">✓</span>
+                        <%= successMessage %>
+                    </div>
+                <% } %>
+
+                <% if (errorMessage) { %>
+                    <div class="alert alert-error">
+                        <span class="icon">✕</span>
+                        <%= errorMessage %>
+                    </div>
+                <% } %>
+
+                <form method="POST" action="/contact" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="date" id="eventDate" name="eventDate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventType">Event Type</label>
+                            <select id="eventType" name="eventType">
+                                <option value="">Select an option</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="festival">Festival</option>
+                                <option value="private">Private Party</option>
+                                <option value="club">Club/Venue</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="venue">Venue/Location</label>
+                            <input type="text" id="venue" name="venue" placeholder="Venue name or city">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell us about your event, expected attendance, budget range, and any special requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">
+                        <span>✉ Send Inquiry</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info Section -->
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>Contact Info</h3>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box">📧</div>
+                        <div>
+                            <p class="label">Email</p>
+                            <a href="mailto:booking@theband.com">nichellejackson145@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon-box">📞</div>
+                        <div>
+                            <p class="label">Phone</p>
+                            <a href="tel:+15551234567">(650) 660-9553</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon-box">📍</div>
+                        <div>
+                            <p class="label">Based In</p>
+                            <p>Bay Area, CA</p>
+                            <p class="sub">Available Locally</p>
+                        </div>
+                    </div>
+                </div>
+
+<div class="info-card">
+    <h3>Follow Us</h3>
+    <div class="social-links">
+        <a href="https://www.instagram.com/mrleorhythm/" target="_blank" class="social-btn">
+            <img src="/images/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/nnjackson42?mibextid=ZbWKwL" target="_blank" class="social-btn">
+            <img src="/images/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://youtube.com/@mrleorhythmsoulband4484" target="_blank" class="social-btn">
+            <img src="/images/youtube1.png" alt="YouTube">
+        </a>
+</div>
+
+                <div class="info-card response-time">
+                    <h3>Response Time</h3>
+                    <p>We typically respond to all booking inquiries within 24-48 hours. For urgent requests, please call us directly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+    </div>
+  </section>
+
+  <footer></footer>
+</body>
+</html>

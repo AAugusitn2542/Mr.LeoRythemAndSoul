@@ -4,45 +4,80 @@
   <title>MrLeoRythmAndSoul - Performances</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/gallery.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="/scripts/header.js" defer></script>
 </head>
 <body>
   <header></header>
   
-  <section class="performance-section">
-    <div class="performance-header">
-      <div class="music-icon">🎬</div>
-      <h1>Live Performances & Videos</h1>
-      <p class="performance-subtitle">Watch us perform live and see behind-the-scenes moments</p>
+<section class="performances-section">
+  <div class="performances-hero">
+    <div class="hero-content">
+      <h1>LIVE PERFORMANCES</h1>
+      <p>Experience our most electrifying moments on stage</p>
     </div>
+  </div>
 
-    <div class="performance-grid">
-      <% for (let perf of performances) { %>
-        <div class="performance-item">
-          <% if (perf.embed) { %>
-            <!-- Instagram Embed -->
-            <div class="instagram-embed-wrapper">
-              <%- perf.embedCode %>
+  <div class="performances-container">
+    <div class="video-grid">
+      <% performanceData.forEach(performance => { %>
+        <div class="video-card" onclick="openVideoModal('<%= performance.videoSrc %>', '<%= performance.title %> , <%= performance.location %>')">
+          <div class="video-thumbnail">
+            <img src="<%= performance.thumbnail %>" alt="<%= performance.title %>">
+            <div class="play-button">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="40" fill="rgba(255, 0, 0, 0.8)"/>
+                <polygon points="35,25 35,55 55,40" fill="white"/>
+              </svg>
             </div>
-          <% } else { %>
-            <!-- Regular Video Item -->
-            <div class="video-thumbnail">
-              <img src="<%= perf.thumbnail %>" alt="<%= perf.name %>">
-              <div class="play-button">▶</div>
-            </div>
-            
-            <div class="performance-info">
-              <h3><%= perf.name %></h3>
-              <p class="perf-date"><%= perf.date %></p>
-              <p class="perf-description"><%= perf.description %></p>
-              <a href="<%= perf.video %>" class="watch-btn" target="_blank">Watch Video</a>
-            </div>
-          <% } %>
+          </div>
+          
+          <div class="video-info">
+            <h3><%= performance.title %></h3>
+            <p class="location"><%= performance.location %></p>
+            <p class="date"><%= new Date(performance.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) %></p>
+          </div>
         </div>
-      <% } %>
+      <% }); %>
     </div>
-  </section>
+  </div>
+</section>
 
-<script async src="//www.instagram.com/embed.js"></script>
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeVideoModal()">&times;</span>
+    <video id="modalVideo" controls>
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<script>
+function openVideoModal(videoSrc, title) {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  video.src = videoSrc;
+  modal.style.display = 'flex';
+  video.play();
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  video.pause();
+  modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('videoModal');
+  if (event.target === modal) {
+    closeVideoModal();
+  }
+}
+</script>
+
+  <footer></footer>
 </body>
 </html>
