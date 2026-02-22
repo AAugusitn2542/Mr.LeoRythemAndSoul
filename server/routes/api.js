@@ -51,29 +51,5 @@ router.post('/contact', async (req, res) => {
     }
 });
 
-/*Define route to create a new Tour Date
-router.post('/tour-dates', (req, res) => {
-    
-    const newTourDate = req.body; // no idea what does this...
-    
-    const createTourDate = createTourDate(newTourDate);
-    
-    res.status(201).json(createdTourDate);  // Return the newly created restaurant
-});
-
-// Define route to delete a restaurant by ID
-router.delete('/restaurants/:id', (req, res) => {
-    
-    const id = parseInt(req.params.id, 10); // retrives the id parameter from the requestURL ie: /restuarants/123 | 10 is base sys.
-    
-    try {
-        const deleteTourDate = deleteTourDate(id);
-        res.json(deleteTourDate);  // Return the deleted restaurant data
-    } catch (error) {
-        res.status(404).json({ error: error.message });
-    }
-});
-*/
-
 
 export {router as backendRouter};

@@ -1,4 +1,7 @@
 node_modules/
 dist/
+migrations/
+public/images/
+public/videos/
 .envnode_modules/
 **/node_modules/
