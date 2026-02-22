@@ -6,7 +6,7 @@ header.innerHTML = `
   <div class="band-header">
     <div class="logo">
       <a href="/" class="logo">
-        <span>MrLeoRythmAndSoulBand</span>
+        <span>Mr.LeoRhythmAndSoulBand</span>
       </a>
     </div>
     <nav class="menu">
@@ -17,10 +17,10 @@ header.innerHTML = `
       <a href="/contact">Contact</a>
     </nav>
     <div class="social-icons">
-      <a href="https://facebook.com" target="_blank">
+      <a href="https://www.facebook.com/nnjackson42?mibextid=ZbWKwL" target="_blank">
         <i class="fab fa-facebook"></i>
       </a>
-      <a href="https://instagram.com" target="_blank">
+      <a href="https://www.instagram.com/mrleorhythm/" target="_blank">
         <i class="fab fa-instagram"></i>
       </a>
       <a href="https://www.youtube.com/channel/UCsSyHUURyLjpzasJRc2suhA" target="_blank">

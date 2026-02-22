@@ -1,8 +1,8 @@
 node_modules/
 dist/
 migrations/
-public/images/
-public/videos/
+server/public/images/
+server/public/videos/
 .env
 node_modules/
 **/node_modules/
