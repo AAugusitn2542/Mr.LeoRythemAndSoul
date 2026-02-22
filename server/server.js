@@ -1,9 +1,11 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from './config/database.js'; // Import pool for database connection
-import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+
 
 
 //Import Crew & Tour data & Gallery data & performance data
@@ -150,8 +152,8 @@ app.post('/contact', async (req, res) => {
       html: `
         <h2>Thanks for reaching out!</h2>
         <p>Hi ${name},</p>
-        <p>We received your booking inquiry and will get back to you within 24-48 hours.</p>
-        <p>Best regards,<br>Mr. Leo Rhythm & Soul Band</p>
+        <p>Hey mom i got this email form to work. Now people can email your directly with their contact info. Email me back if you get this!</p>
+        <p>Best Regards,<br>Andre </p>
       `,
     });
 
@@ -160,10 +162,11 @@ app.post('/contact', async (req, res) => {
       errorMessage: null 
     });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Full Error:', error);
+    const errorMsg = error.message || error.code || 'Failed to send email. Please try again or contact us directly.';
     res.render('contact', { 
       successMessage: null,
-      errorMessage: 'Failed to submit inquiry. Please try again.' 
+      errorMessage: errorMsg
     });
   }
 });
