@@ -3,5 +3,6 @@ dist/
 migrations/
 public/images/
 public/videos/
-.envnode_modules/
+.env
+node_modules/
 **/node_modules/
