@@ -25,7 +25,7 @@ let theGalleryData = [
     },
    
     {
-      photo: "/images/gallerypic02.jpg",
+      photo: "/images/gallerypic01.jpg",
       name: "Booking Manager",
     },
 

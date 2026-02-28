@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const filterBtns = document.querySelectorAll(".filter-btn");
   const items = document.querySelectorAll(".gallery-item");
@@ -8,8 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxDesc = document.getElementById("lightbox-desc");
   const closeBtn = document.querySelector(".lightbox-close");
   const backdrop = document.querySelector(".lightbox-backdrop");
-
-  /* --------- Filtering --------- */
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* --------- Lightbox open --------- */
   items.forEach(item => {
     item.addEventListener("click", () => {
       const img = item.querySelector("img");
@@ -46,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* --------- Lightbox close helpers --------- */
   function closeLightbox() {
     lightbox.classList.add("hidden");
     lightboxImg.src = "";
@@ -62,3 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+*/

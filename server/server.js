@@ -48,7 +48,7 @@ app.get("/Video", (req,resp) => { /* Define the GET route for the URL | when vis
     resp.sendFile(path.join(__dirname, 'public', 'Video.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
-app.get('/gallery', (req, res) => {
+app.get('/Gallery', (req, res) => {
   res.render("gallery", { gallery: theGalleryData});
 });
 
