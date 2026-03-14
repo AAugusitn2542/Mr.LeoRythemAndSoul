@@ -152,8 +152,8 @@ app.post('/contact', async (req, res) => {
       html: `
         <h2>Thanks for reaching out!</h2>
         <p>Hi ${name},</p>
-        <p>Hey mom i got this email form to work. Now people can email your directly with their contact info. Email me back if you get this!</p>
-        <p>Best Regards,<br>Andre </p>
+        <p>Thanks for your message! We'll get back to you within 24-48 hours.</p>
+        <p>Best Regards,<br>MrLeoRhythmAndSoul</p>
       `,
     });
 
