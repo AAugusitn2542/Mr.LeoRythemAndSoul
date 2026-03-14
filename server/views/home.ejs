@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MrLeoRythmAndSoul - Tour Dates</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="/scripts/header.js" defer></script>
+    <title>MrLeoRythemAndSoul</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/header.js" defer></script>
 </head>
 <body>
   <header></header>
-  
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Mr Leo Rhythm <br/> & Soul Band</h1>
+      <p class="hero-tagline">Experience unforgettable live performances that blend classic soul, R&B, and funk. We bring energy, passion, and authenticity to every stage.</p>
+      <div class="hero-buttons">
+        <a href="/Performance" class="btn btn-primary">🎵 Listen Now</a>
+        <a href="/Tour" class="btn btn-secondary">📅 Tour Dates</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/images/hero_pic.png" alt="Mr Leo Rhythm & Soul Band" />
+    </div>
+  </section>
+
+  <!-- Tour Dates Section -->
   <section class="tour-section">
     <div class="tour-header">
       <div class="calendar-icon">📅</div>
@@ -59,7 +76,7 @@
           <div class="tour-info">
             <h3 class="venue-name"><%= tour.venue %></h3>
             <p class="venue-location">📍 <%= tour.city %>, <%= tour.state %></p>
-            
+
             <% if (tour.eventType) { %>
               <p class="event-type">⭐ <%= tour.eventType %></p>
             <% } %>
@@ -82,10 +99,10 @@
         </div>
 
         <!-- Modal for tour details -->
-        <div class="event-modal" id="modal-<%= index %>">
+        <div class="event-modal" id="home-modal-<%= index %>">
           <div class="modal-content">
             <span class="modal-close" data-index="<%= index %>">✕</span>
-            
+
             <div class="modal-image">
               <img src="<%= tour.image %>" alt="<%= tour.venue %>">
             </div>
@@ -119,13 +136,13 @@
 
               <div class="modal-buttons">
                 <button class="buy-tickets-btn">🎫 Buy Tickets</button>
-                <a 
-  href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(tour.venue + ' ' + tour.location) %>" 
-  target="_blank" 
-  class="view-map-btn"
->
-  📍 View on Map
-</a>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(tour.venue + ' ' + tour.location) %>"
+                  target="_blank"
+                  class="view-map-btn"
+                >
+                  📍 View on Map
+                </a>
                 <button class="share-btn">↗️</button>
               </div>
 
@@ -142,48 +159,37 @@
   </section>
 
   <script>
-    // Apply badge colors from data attributes to avoid raw EJS inside style attributes (fixes parser errors)
     document.querySelectorAll('[data-badge-color]').forEach(el => {
       const color = el.getAttribute('data-badge-color');
-      if (color) {
-        el.style.backgroundColor = color;
-      }
+      if (color) el.style.backgroundColor = color;
     });
 
     function openModal(index) {
-      document.getElementById('modal-' + index).style.display = 'flex';
+      document.getElementById('home-modal-' + index).style.display = 'flex';
     }
 
     function closeModal(index) {
-      document.getElementById('modal-' + index).style.display = 'none';
+      document.getElementById('home-modal-' + index).style.display = 'none';
     }
 
-    // Attach close handlers to modal close buttons (use data-index to avoid inline EJS in attributes)
     document.querySelectorAll('.modal-close').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const idx = btn.getAttribute('data-index');
-        if (idx !== null) {
-          closeModal(idx);
-        }
+        if (idx !== null) closeModal(idx);
       });
     });
 
-    // Click tour card to open modal
     document.querySelectorAll('.tour-card').forEach((card, index) => {
       card.addEventListener('click', () => openModal(index));
     });
 
-    // Close modal when clicking outside
     document.querySelectorAll('.event-modal').forEach(modal => {
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.style.display = 'none';
-        }
+        if (e.target === modal) modal.style.display = 'none';
       });
     });
 
-    // Search functionality
     document.getElementById('tourSearch').addEventListener('keyup', (e) => {
       const searchTerm = e.target.value.toLowerCase();
       document.querySelectorAll('.tour-card').forEach(card => {
@@ -192,7 +198,6 @@
       });
     });
 
-    // Filter functionality
     document.querySelectorAll('.filter-option').forEach(option => {
       option.addEventListener('click', () => {
         const filter = option.dataset.filter;

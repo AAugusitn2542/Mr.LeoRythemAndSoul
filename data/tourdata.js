@@ -8,15 +8,34 @@ const toursData = [
     dateYear: "2024",
     fullDate: "Sa, JAN 10, 2024",
     doorsOpenTime: "7:00 PM",
-    dayOfWeek: "SAT",
+    dayOfWeek: "Sat",
     capacity: 40,
-    priceRange: "Free-Entry",
+    priceRange: "Free Admission",
     status: "Free Admission",
     badgeColor: "#22c55e",
     eventType: null,
     image: "/images/cats.png",
     ageRestriction: "21+ only",
     parking: "Available on-site and nearby streets"
+  },
+  {
+    venue: "Sktillettos & Sneakers",
+    city: "Bahai Center of San Jose",
+    state: "CA",
+    dateMonth: "March",
+    dateDay: "14",
+    dateYear: "2026",
+    fullDate: "Sat, March 14, 2026",
+    doorsOpenTime: "6:00 PM",
+    dayOfWeek: "Sat",
+    capacity: 100,
+    priceRange: "Free Admission",
+    status: "Free Admission",
+    badgeColor: "#22c55e",
+    eventType: null,
+    image: "/images/Stillettos_sneakers.png",
+    ageRestriction: "21+ only",
+    parking: "Available on-site and nearby streets",
   },
 {
     venue: "The World Famous Turf Club",
@@ -93,11 +112,12 @@ const toursData = [
     status: "Free Admission",
     badgeColor: "#22c55e",
     eventType: null,
-    image: "/images/Hayward.png",
+    image: "/images/Stillettos_sneakers.png",
     ageRestriction: "21+ only",
     parking: "Available on-site and nearby streets",
     supportActs: "Opening acts to be announced"
   },
+  
   // Add more tours here
 ];
 
