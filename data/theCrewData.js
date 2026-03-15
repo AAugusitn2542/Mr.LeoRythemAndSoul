@@ -16,7 +16,7 @@ let theCrewData = [
       skills: ["Lead Guitar"]
     },
     {
-      photo: "/images/LeadSinger.jpg",
+      photo: "/images/beeprofile.png",
       name: "Lead Singer",
       instrument: "Vocalist",
       page: "/Bee",

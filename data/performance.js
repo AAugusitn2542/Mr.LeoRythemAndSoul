@@ -5,7 +5,7 @@ export const performanceData = [
     location: "Los Gatos, CA",
     date: "2026-01-10",
     videoSrc: "/video/cats02.mp4",
-    thumbnail: "/images/gallerypic05.png",
+    thumbnail: "/images/gallerypic06.png",
   },
   {
    id: 2,
