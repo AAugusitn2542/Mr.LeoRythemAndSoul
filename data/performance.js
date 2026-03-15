@@ -28,7 +28,7 @@ export const performanceData = [
     title: "Live at The Cats",
     location: "Los Gatos, CA",
     date: "2025-08-15",
-    videoSrc: "/video/cats02.mp4",
+    videoSrc: "/video/sanjose.mp4",
     thumbnail: "/images/gallerypic07.png",
   },
   

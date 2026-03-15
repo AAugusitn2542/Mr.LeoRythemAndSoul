@@ -166,10 +166,12 @@
 
     function openModal(index) {
       document.getElementById('home-modal-' + index).style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal(index) {
       document.getElementById('home-modal-' + index).style.display = 'none';
+      document.body.style.overflow = '';
     }
 
     document.querySelectorAll('.modal-close').forEach(btn => {
