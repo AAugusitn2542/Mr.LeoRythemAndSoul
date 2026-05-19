@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <title>MrLeoRythmAndSoul - Gallery</title>
-  
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/gallery.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -10,23 +9,91 @@
 </head>
 <body>
   <header></header>
-<div class="image-grid">
-  <div class="image01"></div>
-  <div class="image02"></div>
-  <div class="image03"></div>
-  <div class="image04"></div>
-  <div class="image05"></div>
-  <div class="image06"></div>
-  <div class="image07"></div>
-  <div class="image08"></div>
-  <div class="image09"></div>
-  <div class="image10"></div>
-  <div class="image11"></div>
-  <div class="image12"></div>
-  <div class="image13"></div>
-  <div class="image14"></div>
-</div>
 
-<!-- Make sure this is AFTER the HTML above -->
+  <section class="gallery-section">
+    <div class="gallery-hero">
+      <h1>GALLERY</h1>
+      <p>Moments from the stage</p>
+    </div>
+
+    <div class="gallery-controls">
+      <div class="gallery-filter-btns">
+        <button class="gallery-filter active" data-year="all">All</button>
+        <button class="gallery-filter" data-year="2026">2026</button>
+        <button class="gallery-filter" data-year="2025">2025</button>
+      </div>
+      <div class="gallery-count">
+        <span id="photoCount"><%= gallery.length %></span> photos
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <% gallery.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(photo => { %>
+        <% const year = new Date(photo.date).getFullYear(); %>
+        <% const monthLabel = new Date(photo.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }); %>
+        <div class="gallery-item" data-year="<%= year %>" onclick="openLightbox('<%= photo.photo %>', '<%= photo.event %>', '<%= photo.location %>', '<%= monthLabel %>')">
+          <img src="<%= photo.photo %>" alt="<%= photo.event %>" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="overlay-event"><%= photo.event %></p>
+            <% if (photo.location) { %>
+              <p class="overlay-location">📍 <%= photo.location %></p>
+            <% } %>
+            <p class="overlay-date"><%= monthLabel %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImg" src="" alt="">
+      <div class="lightbox-info">
+        <p id="lightboxEvent"></p>
+        <p id="lightboxLocation"></p>
+        <p id="lightboxDate"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Filter by year
+    document.querySelectorAll('.gallery-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const year = btn.dataset.year;
+        let visible = 0;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          const show = year === 'all' || item.dataset.year === year;
+          item.style.display = show ? 'block' : 'none';
+          if (show) visible++;
+        });
+        document.getElementById('photoCount').textContent = visible;
+      });
+    });
+
+    // Lightbox
+    function openLightbox(src, event, location, date) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxEvent').textContent = event;
+      document.getElementById('lightboxLocation').textContent = location ? '📍 ' + location : '';
+      document.getElementById('lightboxDate').textContent = date;
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 </body>
 </html>

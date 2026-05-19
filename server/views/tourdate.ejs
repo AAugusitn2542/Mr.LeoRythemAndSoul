@@ -49,7 +49,7 @@
 
     <div class="tour-list">
       <% tours.forEach((tour, index) => { %>
-        <div class="tour-card" data-status="<%= tour.status.toLowerCase().replace(' ', '-') %>">
+        <div class="tour-card" data-status="<%= tour.status.toLowerCase().replace(' ', '-') %>" data-date="<%= tour.dateMonth %> <%= tour.dateDay %>, <%= tour.dateYear %>">
           <div class="tour-date-box">
             <div class="date-month"><%= tour.dateMonth %></div>
             <div class="date-day"><%= tour.dateDay %></div>
@@ -120,7 +120,7 @@
               <div class="modal-buttons">
                 <button class="buy-tickets-btn">🎫 Buy Tickets</button>
                 <a 
-  href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(tour.venue + ' ' + tour.location) %>" 
+  href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(tour.venue + ' ' + tour.city + ', ' + tour.state) %>" 
   target="_blank" 
   class="view-map-btn"
 >
@@ -184,7 +184,17 @@
         }
       });
     });
-
+    // Mark past events as greyed out
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    document.querySelectorAll('.tour-card').forEach(card => {
+      const dateStr = card.getAttribute('data-date');
+      const eventDate = new Date(dateStr);
+      if (!isNaN(eventDate) && eventDate < today) {
+        card.classList.add('past-event');
+      }
+    });
+ 
     // Search functionality
     document.getElementById('tourSearch').addEventListener('keyup', (e) => {
       const searchTerm = e.target.value.toLowerCase();

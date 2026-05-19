@@ -31,5 +31,21 @@ export const performanceData = [
     videoSrc: "/video/sanjose.mp4",
     thumbnail: "/images/gallerypic06.png",
   },
-  
+  {
+    id: 5,
+    title: "Live at Zahirs Bistro",
+    location: "Milpitas, CA",
+    date: "2026-04-25",
+    videoSrc: "/video/bistro_1_fixed.mp4",
+    thumbnail: "/images/gallerypic06.png",
+  },
+  {
+    id: 6,
+    title: "Live at Hikari",
+    location: "Milpitas, CA",
+    date: "2026-04-25",
+    videoSrc: "/video/2026-05-19-132755308_fixed.mp4",
+    thumbnail: "/images/gallerypic06.png",
+  },
+
 ];

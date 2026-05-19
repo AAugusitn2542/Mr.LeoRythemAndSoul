@@ -378,6 +378,18 @@ a:hover::before {
   box-shadow: 0 0 30px rgba(179, 102, 255, 0.2);
 }
 
+.tour-card.past-event {
+  opacity: 0.45;
+  filter: grayscale(100%);
+}
+
+.tour-card.past-event:hover {
+  transform: none;
+  border-color: rgba(179, 102, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+}
+
 /* Date Box */
 .tour-date-box {
   background: linear-gradient(135deg, #9d4edd, #c77dff);

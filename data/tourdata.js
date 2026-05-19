@@ -79,7 +79,7 @@ const toursData = [
   },
   {
     venue: "The World Famous Turf Club",
-    city: "Hayward",
+    city: "Los Altos",
     state: "CA",
     dateMonth: "May",
     dateDay: "17",
@@ -97,6 +97,28 @@ const toursData = [
     parking: "Available on-site and nearby streets",
     supportActs: "Opening acts to be announced"
   },
+  {
+    venue: "Riddem Exchange Global Kegites Club",
+    city: "1455 Oka Road Los Gatos, CA 95032",
+    state: "CA",
+    dateMonth: "May",
+    dateDay: "23",
+    dateYear: "2026",
+    fullDate: "Sat, May 23, 2026",
+    doorsOpenTime: "4:00 PM",
+    doorsCloseTime: "8:00 PM",
+    dayOfWeek: "Sat",
+    capacity: 100,
+    priceRange: "$50",
+    status: "50$ Entry Fee",
+    badgeColor: "#22c55e",
+    eventType: null,
+    image: "/images/Riddem_Exchange.png",
+    ageRestriction: "21+ only",
+    parking: "Available on-site and nearby streets",
+    supportActs: "Opening acts to be announced"
+  },
+
   {
     venue: "The World Famous Turf Club",
     city: "Hayward",

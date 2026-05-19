@@ -2,5 +2,6 @@ node_modules/
 dist/
 migrations/
 .env
-node_modules/
 **/node_modules/
+ffmpeg/
+server/public/video/*.mp4

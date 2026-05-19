@@ -109,22 +109,37 @@ app.get('/contact', (req, res) => {
 });
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or your email provider
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
 });
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 app.post('/contact', async (req, res) => {
   const { name, email, phone, eventDate, eventType, venue, message } = req.body;
 
   try {
-    // 1. Save to database
-    await pool.query(
-      'INSERT INTO booking_inquiries (name, email, phone, event_date, event_type, venue, message) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-      [name, email, phone || null, eventDate || null, eventType || null, venue || null, message]
-    );
+    // 1. Save to database (non-blocking — emails still send if DB fails)
+    try {
+      await pool.query(
+        'INSERT INTO booking_inquiries (name, email, phone, event_date, event_type, venue, message) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        [name, email, phone || null, eventDate || null, eventType || null, venue || null, message]
+      );
+    } catch (dbErr) {
+      console.error('DB save failed:', dbErr.message);
+    }
 
     // 2. Send email to your booking manager
     await transporter.sendMail({
@@ -133,14 +148,14 @@ app.post('/contact', async (req, res) => {
       subject: `New Booking Inquiry from ${name}`,
       html: `
         <h2>New Booking Inquiry</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Event Date:</strong> ${eventDate || 'Not specified'}</p>
-        <p><strong>Event Type:</strong> ${eventType || 'Not specified'}</p>
-        <p><strong>Venue:</strong> ${venue || 'Not specified'}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone) || 'Not provided'}</p>
+        <p><strong>Event Date:</strong> ${escapeHtml(eventDate) || 'Not specified'}</p>
+        <p><strong>Event Type:</strong> ${escapeHtml(eventType) || 'Not specified'}</p>
+        <p><strong>Venue:</strong> ${escapeHtml(venue) || 'Not specified'}</p>
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
       `,
     });
 
