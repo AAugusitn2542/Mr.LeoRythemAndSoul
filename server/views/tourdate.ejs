@@ -10,20 +10,22 @@
   <header></header>
   
   <section class="tour-section">
-    <div class="tour-header">
-      <div class="calendar-icon">📅</div>
-      <h2>Tour Dates</h2>
-      <p class="tour-tagline">Join us live! Experience the energy, the music, and the magic. Find a show near you.</p>
+    <div class="tour-hero">
+      <div class="tour-hero-content">
+        <p class="tour-hero-label">📅 On Tour</p>
+        <h1>Tour Dates</h1>
+        <p class="tour-hero-sub">Join us live! Experience the energy, the music, and the magic. Find a show near you.</p>
+      </div>
     </div>
 
     <div class="tour-stats">
       <div class="stat">
-        <div class="stat-number"><%= tours.length %></div>
-        <div class="stat-label">Total Shows</div>
+        <div class="stat-number"><%= tours.filter(t => new Date(t.dateMonth + ' ' + t.dateDay + ', ' + t.dateYear) >= new Date()).length %></div>
+        <div class="stat-label">Upcoming Shows</div>
       </div>
       <div class="stat">
-        <div class="stat-number"><%= tours.filter(t => t.status === 'On Sale').length %></div>
-        <div class="stat-label">On Sale</div>
+        <div class="stat-number"><%= tours.filter(t => t.priceRange === 'Free Admission').length %></div>
+        <div class="stat-label">Free Events</div>
       </div>
       <div class="stat">
         <div class="stat-number"><%= tours.filter(t => t.status === 'Sold Out').length %></div>
@@ -194,6 +196,20 @@
         card.classList.add('past-event');
       }
     });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = [...document.querySelectorAll('.tour-card')].indexOf(card);
+          setTimeout(() => card.classList.add('revealed'), index * 100);
+          observer.unobserve(card);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.tour-card').forEach(card => observer.observe(card));
  
     // Search functionality
     document.getElementById('tourSearch').addEventListener('keyup', (e) => {

@@ -24,14 +24,6 @@ let theCrewData = [
       skills: ["Vocals", "Songwriting"]
     },
     {
-      photo: "/images/miyah.jpg",
-      name: "Miyah",
-      instrument: "Vocalist",
-      page: "/Key",
-      joinYear: 2026,
-      skills: ["Vocals", ]
-    },
-    {
       photo: "/images/tay.jpg",
       name: "Tay",
       instrument: "Vocalist",

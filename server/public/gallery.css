@@ -54,10 +54,11 @@ html, body { padding: 0; margin: 0; }
 }
 
 .gallery-hero {
-  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(94,91,91,0.4) 100%),
-              url('/images/gallerypic07.png') center top 30% / cover no-repeat;
-  min-height: 500px;
-  padding: 120px 20px;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(30,0,60,0.65) 100%),
+    url('/images/gallerypic07.png') center top / cover no-repeat;
+  min-height: 450px;
+  padding: 0;
   text-align: center;
   color: white;
   display: flex;
@@ -66,19 +67,49 @@ html, body { padding: 0; margin: 0; }
   justify-content: center;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.gallery-hero h1 {
-  font-size: 4rem;
-  font-weight: 900;
+.gallery-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #b366ff, transparent);
+}
+
+.gallery-hero-content {
+  z-index: 2;
+  padding: 40px 20px;
+}
+
+.gallery-hero-label {
+  font-size: 0.8rem;
   letter-spacing: 4px;
-  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  color: #b366ff;
+  margin: 0 0 16px 0;
+  font-weight: 700;
 }
 
-.gallery-hero p {
-  font-size: 1.3rem;
-  color: rgba(255,255,255,0.85);
+.gallery-hero-content h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  color: white;
+  margin: 0 0 16px 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  animation: fadeInDown 0.8s ease;
+}
+
+.gallery-hero-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
   margin: 0;
+  animation: fadeInUp 0.8s ease 0.2s both;
 }
 
 .gallery-controls {
@@ -239,38 +270,167 @@ html, body { padding: 0; margin: 0; }
 
 /* Hero Section */
 .performances-hero {
-  background: linear-gradient(135deg, rgba(3, 3, 3, 0.7) 0%, rgba(94, 91, 91, 0.4) 100%),
-              url('/images/gallerypic07.png') center top 30%/ cover no-repeat;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(30,0,60,0.65) 100%),
+    url('/images/gallerypic07.png') center top / cover no-repeat;
   color: white;
-  padding: 120px 20px;
+  padding: 0;
   text-align: center;
   position: relative;
-  min-height: 600px;
+  min-height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;                    /* Add this */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.hero-content {
-  max-width: 600px;
+.performances-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #b366ff, transparent);
+}
+
+.perf-hero-content {
   z-index: 2;
+  padding: 40px 20px;
 }
 
-.performances-hero h1 {
-  font-size: 4rem;
+.perf-hero-label {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #b366ff;
+  margin: 0 0 16px 0;
+  font-weight: 700;
+}
+
+.perf-hero-content h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 900;
+  color: white;
+  margin: 0 0 16px 0;
   letter-spacing: 3px;
-  margin: 0 0 20px 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
   animation: fadeInDown 0.8s ease;
 }
 
-.performances-hero p {
-  font-size: 1.5rem;
+.perf-hero-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
   margin: 0;
-  color: rgba(255, 255, 255, 0.95);
   animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* ---- Performance Filter Buttons ---- */
+.perf-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 25px 5%;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.perf-filter {
+  background: transparent;
+  border: 2px solid rgba(179, 102, 255, 0.4);
+  color: #ccc;
+  padding: 8px 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.perf-filter:hover,
+.perf-filter.active {
+  background: #b366ff;
+  border-color: #b366ff;
+  color: white;
+}
+
+/* ---- Duration Badge ---- */
+.duration-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  z-index: 4;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Now Playing Bar ---- */
+.now-playing-bar {
+  position: fixed;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(90deg, #1a1a1a, #2a1a3a);
+  border-top: 2px solid #b366ff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 25px;
+  z-index: 999;
+  transition: bottom 0.4s ease;
+  box-shadow: 0 -4px 20px rgba(179, 102, 255, 0.2);
+}
+
+.now-playing-bar.visible {
+  bottom: 0;
+}
+
+.now-playing-icon {
+  color: #b366ff;
+  font-size: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.now-playing-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#nowPlayingTitle {
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+#nowPlayingLocation {
+  color: #aaa;
+  font-size: 0.78rem;
+}
+
+.now-playing-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.now-playing-close:hover {
+  color: white;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 /* Video Grid */

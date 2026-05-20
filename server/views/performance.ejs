@@ -9,75 +9,134 @@
 </head>
 <body>
   <header></header>
-  
-<section class="performances-section">
-  <div class="performances-hero">
-    <div class="hero-content">
-      <h1>LIVE PERFORMANCES</h1>
-      <p>Experience our most electrifying moments on stage</p>
-    </div>
-  </div>
 
-  <div class="performances-container">
-    <div class="video-grid">
-      <% performanceData.forEach(performance => { %>
-        <div class="video-card" onclick="openVideoModal('<%= performance.videoSrc %>', '<%= performance.title %> , <%= performance.location %>')">
-          <div class="video-thumbnail">
-            <img src="<%= performance.thumbnail %>" alt="<%= performance.title %>">
-            <div class="play-button">
-              <svg width="80" height="80" viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="40" fill="rgba(255, 0, 0, 0.8)"/>
-                <polygon points="35,25 35,55 55,40" fill="white"/>
-              </svg>
-            </div>
-          </div>
-          
-          <div class="video-info">
-            <h3><%= performance.title %></h3>
-            <p class="location"><%= performance.location %></p>
-            <p class="date"><%= new Date(performance.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) %></p>
-          </div>
-        </div>
+  <section class="performances-section">
+    <div class="performances-hero">
+      <div class="perf-hero-content">
+        <p class="perf-hero-label">🎬 On Stage</p>
+        <h1>Live Performances</h1>
+        <p class="perf-hero-sub">Relive the energy, the music, and the moments that move the crowd.</p>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="perf-filters">
+      <button class="perf-filter active" data-filter="all">All</button>
+      <% [...new Set(performanceData.map(p => p.title))].forEach(title => { %>
+        <button class="perf-filter" data-filter="<%= title %>">
+          <%= title.replace('Live at ', '') %>
+        </button>
       <% }); %>
     </div>
+
+    <div class="performances-container">
+      <div class="video-grid">
+        <% performanceData.forEach((performance, index) => { %>
+          <div class="video-card"
+               data-title="<%= performance.title %>"
+               onclick="openVideoModal('<%= performance.videoSrc %>', '<%= performance.title %>', '<%= performance.location %>')">
+
+            <div class="video-thumbnail">
+              <img src="<%= performance.thumbnail %>" alt="<%= performance.title %>">
+
+              <!-- Duration Badge -->
+              <span class="duration-badge" id="dur-<%= index %>">--:--</span>
+
+              <!-- Hidden video to load metadata only -->
+              <video id="meta-<%= index %>" preload="metadata" style="display:none">
+                <source src="<%= performance.videoSrc %>" type="video/mp4">
+              </video>
+
+              <div class="play-button">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="40" fill="rgba(255, 0, 0, 0.8)"/>
+                  <polygon points="35,25 35,55 55,40" fill="white"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3><%= performance.title %></h3>
+              <p class="location"><%= performance.location %></p>
+              <p class="date"><%= new Date(performance.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeVideoModal()">&times;</span>
+      <video id="modalVideo" controls>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
-</section>
 
-<!-- Video Modal -->
-<div id="videoModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeVideoModal()">&times;</span>
-    <video id="modalVideo" controls>
-      <source src="" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <!-- Now Playing Bar -->
+  <div id="nowPlayingBar" class="now-playing-bar">
+    <span class="now-playing-icon">▶</span>
+    <div class="now-playing-info">
+      <span id="nowPlayingTitle"></span>
+      <span id="nowPlayingLocation"></span>
+    </div>
+    <button class="now-playing-close" onclick="closeVideoModal()">✕</button>
   </div>
-</div>
 
-<script>
-function openVideoModal(videoSrc, title) {
-  const modal = document.getElementById('videoModal');
-  const video = document.getElementById('modalVideo');
-  video.src = videoSrc;
-  modal.style.display = 'flex';
-  video.play();
-}
+  <script>
+    // Load video durations from metadata
+    document.querySelectorAll('[id^="meta-"]').forEach(video => {
+      const index = video.id.replace('meta-', '');
+      video.addEventListener('loadedmetadata', () => {
+        const secs = Math.floor(video.duration);
+        const m = Math.floor(secs / 60);
+        const s = secs % 60;
+        document.getElementById('dur-' + index).textContent = m + ':' + String(s).padStart(2, '0');
+      });
+    });
 
-function closeVideoModal() {
-  const modal = document.getElementById('videoModal');
-  const video = document.getElementById('modalVideo');
-  video.pause();
-  modal.style.display = 'none';
-}
+    // Filter functionality
+    document.querySelectorAll('.perf-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.perf-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.video-card').forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.title === filter) ? 'block' : 'none';
+        });
+      });
+    });
 
-window.onclick = function(event) {
-  const modal = document.getElementById('videoModal');
-  if (event.target === modal) {
-    closeVideoModal();
-  }
-}
-</script>
+    // Open modal + show Now Playing bar
+    function openVideoModal(videoSrc, title, location) {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      video.src = videoSrc;
+      modal.style.display = 'flex';
+      video.play();
 
-  <footer></footer>
+      document.getElementById('nowPlayingTitle').textContent = title;
+      document.getElementById('nowPlayingLocation').textContent = location ? '📍 ' + location : '';
+      document.getElementById('nowPlayingBar').classList.add('visible');
+    }
+
+    // Close modal + hide Now Playing bar
+    function closeVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      video.pause();
+      modal.style.display = 'none';
+      document.getElementById('nowPlayingBar').classList.remove('visible');
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('videoModal');
+      if (event.target === modal) closeVideoModal();
+    }
+  </script>
 </body>
 </html>

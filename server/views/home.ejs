@@ -23,24 +23,124 @@
     <div class="hero-image">
       <img src="/images/hero_pic.png" alt="Mr Leo Rhythm & Soul Band" />
     </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow">&#8595;</div>
+    </div>
   </section>
+
+  <script>
+    // Fade out scroll indicator when user scrolls
+    window.addEventListener('scroll', () => {
+      const indicator = document.getElementById('scrollIndicator');
+      if (window.scrollY > 300) {
+        indicator.style.opacity = '0';
+      } else {
+        indicator.style.opacity = '1';
+      }
+    });
+  </script>
+
+  <!-- Next Show Spotlight -->
+  <%
+    const nextShow = tours
+      .filter(t => new Date(t.dateMonth + ' ' + t.dateDay + ', ' + t.dateYear) >= new Date())
+      .sort((a, b) => new Date(a.dateMonth + ' ' + a.dateDay + ', ' + a.dateYear) - new Date(b.dateMonth + ' ' + b.dateDay + ', ' + b.dateYear))[0];
+  %>
+  <% if (nextShow) { %>
+  <section class="next-show-section">
+    <div class="next-show-label">🎤 Next Show</div>
+    <div class="next-show-content">
+      <div class="next-show-info">
+        <h2 class="next-show-venue"><%= nextShow.venue %></h2>
+        <p class="next-show-location">📍 <%= nextShow.city %>, <%= nextShow.state %></p>
+        <p class="next-show-date">📅 <%= nextShow.fullDate %> &nbsp;|&nbsp; 🕐 Doors open at <%= nextShow.doorsOpenTime %></p>
+        <p class="next-show-price"><%= nextShow.priceRange === 'Free Admission' ? '🎟️ Free Admission' : '🎟️ ' + nextShow.priceRange %></p>
+        <div class="next-show-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(nextShow.venue + ' ' + nextShow.city + ', ' + nextShow.state) %>" target="_blank" class="btn btn-primary">📍 Get Directions</a>
+          <a href="/Tour" class="btn btn-secondary">View All Shows</a>
+        </div>
+      </div>
+
+      <div class="countdown-box">
+        <div class="countdown-title">Starts In</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <span id="cd-days">00</span>
+            <label>Days</label>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span id="cd-hours">00</span>
+            <label>Hrs</label>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span id="cd-mins">00</span>
+            <label>Mins</label>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span id="cd-secs">00</span>
+            <label>Secs</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if (nextShow.image) { %>
+    <div class="next-show-flyer">
+      <img src="<%= nextShow.image %>" alt="<%= nextShow.venue %> Flyer">
+    </div>
+    <% } %>
+
+  </section>
+
+  <script>
+    (function() {
+      const target = new Date('<%= nextShow.dateMonth %> <%= nextShow.dateDay %>, <%= nextShow.dateYear %>');
+      function update() {
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) {
+          document.querySelector('.countdown-title').textContent = 'Happening Now!';
+          return;
+        }
+        const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('cd-days').textContent  = String(days).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
+        document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
+  <% } %>
 
   <!-- Tour Dates Section -->
   <section class="tour-section">
-    <div class="tour-header">
-      <div class="calendar-icon">📅</div>
-      <h2>Tour Dates</h2>
-      <p class="tour-tagline">Join us live! Experience the energy, the music, and the magic. Find a show near you.</p>
+    <div class="tour-hero">
+      <div class="tour-hero-content">
+        <p class="tour-hero-label">📅 On Tour</p>
+        <h1>Tour Dates</h1>
+        <p class="tour-hero-sub">Join us live! Experience the energy, the music, and the magic. Find a show near you.</p>
+      </div>
     </div>
 
     <div class="tour-stats">
       <div class="stat">
-        <div class="stat-number"><%= tours.length %></div>
-        <div class="stat-label">Total Shows</div>
+        <div class="stat-number"><%= tours.filter(t => new Date(t.dateMonth + ' ' + t.dateDay + ', ' + t.dateYear) >= new Date()).length %></div>
+        <div class="stat-label">Upcoming Shows</div>
       </div>
       <div class="stat">
-        <div class="stat-number"><%= tours.filter(t => t.status === 'On Sale').length %></div>
-        <div class="stat-label">On Sale</div>
+        <div class="stat-number"><%= tours.filter(t => t.priceRange === 'Free Admission').length %></div>
+        <div class="stat-label">Free Events</div>
       </div>
       <div class="stat">
         <div class="stat-number"><%= tours.filter(t => t.status === 'Sold Out').length %></div>
@@ -192,6 +292,20 @@
       }
       card.addEventListener('click', () => openModal(index));
     });
+
+    // Scroll reveal — each card fades in with a staggered delay
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = [...document.querySelectorAll('.tour-card')].indexOf(card);
+          setTimeout(() => card.classList.add('revealed'), index * 100);
+          observer.unobserve(card);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.tour-card').forEach(card => observer.observe(card));
 
     document.querySelectorAll('.event-modal').forEach(modal => {
       modal.addEventListener('click', (e) => {

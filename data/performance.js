@@ -16,6 +16,14 @@ export const performanceData = [
     thumbnail: "/images/gallerypic08.png",
   },
   {
+   id: 2,
+    title: "Live at The Cats",
+    location: "Los Gatos, CA",
+    date: "2026-01-10",
+    videoSrc: "/video/instagram_fixed.mp4",
+    thumbnail: "/images/gallerypic08.png",
+  },
+  {
     id: 3,
     title: "Le banc Performance",
     location: "Los Altos, CA",
