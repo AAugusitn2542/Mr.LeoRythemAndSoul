@@ -1,3 +1,15 @@
+.form-notice {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: #aaa;
+  text-align: center;
+}
+
+.form-notice a {
+  color: #b366ff;
+  text-decoration: underline;
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact-section {
   min-height: 100vh;
