@@ -65,8 +65,9 @@ app.get("/Bee", (req,resp) => { /* Define the GET route for the URL | when visit
     resp.sendFile(path.join(__dirname, 'public', 'Bee.html')); /* Tells Express to send the file as resp to the browers aka client */
 });
 
-app.get("/BookManager", (req,resp) => { /* Define the GET route for the URL | when visited its triggerd */
-    resp.sendFile(path.join(__dirname, 'public', 'BookingManager.html')); /* Tells Express to send the file as resp to the browers aka client */
+app.get("/BookingManager", (req, res) => {
+  const manager = theCrewData.find(b => b.page === '/BookingManager');
+  res.render('bookingManager', { manager });
 });
 
 app.get("/Cody", (req,resp) => { /* Define the GET route for the URL | when visited its triggerd */

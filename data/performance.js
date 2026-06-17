@@ -55,7 +55,6 @@ export const performanceData = [
     videoSrc: "/video/2026-05-19-132755308_fixed.mp4",
     thumbnail: "/images/gallerypic06.png",
   },
-
   {
     id: 7,
     title: "The World Famous Turf Club",

@@ -159,7 +159,23 @@ const toursData = [
     parking: "Available on-site and nearby streets",
     supportActs: "Opening acts to be announced"
   },
-  
+  {
+    venue: "Private Wedding Event",
+    city: "Berkeley",
+    state: "CA",
+    dateMonth: "Oct",
+    dateDay: "3",
+    dateYear: "2026",
+    fullDate: "Sat, Oct 3, 2026",
+    doorsOpenTime: "4:00 PM",
+    dayOfWeek: "Sat",
+    capacity: 100,
+    priceRange: "Free Admission",
+    status: "Free Admission",
+    badgeColor: "#22c55e",
+    eventType: null,
+    image: "/images/Berkeley.png",
+  },
   // Add more tours here
 ];
 

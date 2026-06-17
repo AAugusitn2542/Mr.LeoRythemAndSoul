@@ -73,7 +73,9 @@
               </div>
               <div class="management-info">
                 <h3><%= Band.name %></h3>
-                <% if (Band.skills && Band.skills.length) { %>
+                <% if (Band.title) { %>
+                  <p class="management-role"><%= Band.title %></p>
+                <% } else if (Band.skills && Band.skills.length) { %>
                   <p class="management-role"><%= Band.skills.join(' · ') %></p>
                 <% } %>
                 <% if (Band.email) { %>
