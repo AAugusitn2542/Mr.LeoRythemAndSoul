@@ -25,13 +25,20 @@ let theCrewData = [
     },
     {
       photo: "/images/tay.jpg",
-      name: "Tay",
+      name: "Backup Volcalist",
       instrument: "Vocalist",
       page: "/Tay",
       joinYear: 2025,
       skills: ["Vocals",]
     },
-   
+  {
+      photo: "/images/lead_guitar.png",
+      name: "Lead Guitarist",
+      instrument: "Guitar",
+      page: "/LeadGuitarist",
+      joinYear: 2026,
+      skills: ["Lead Guitar", "Rhythm Guitar"]
+    },
     {
       photo: "/images/Bookingmanager.jpg",
       name: "Nichelle Jackson",
