@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="/scripts/header.js" defer></script>
+  <script src="/scripts/footer.js" defer></script>
   <style>
     .profile-page {
       background: linear-gradient(135deg, #0a0010 0%, #1a0033 50%, #0a0010 100%);
@@ -12,7 +13,6 @@
       padding-bottom: 80px;
     }
 
-    /* Hero Banner */
     .profile-hero {
       background:
         linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(30,0,60,0.75) 100%),
@@ -33,7 +33,6 @@
       background: linear-gradient(90deg, transparent, #b366ff, transparent);
     }
 
-    /* Profile Card */
     .profile-card {
       max-width: 1000px;
       margin: -80px auto 0;
@@ -79,10 +78,6 @@
       white-space: nowrap;
     }
 
-    .profile-identity {
-      padding-bottom: 10px;
-    }
-
     .profile-identity h1 {
       font-size: 2.4rem;
       font-weight: 900;
@@ -106,7 +101,6 @@
       margin: 0;
     }
 
-    /* Main Grid */
     .profile-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -137,7 +131,6 @@
       margin: 0;
     }
 
-    /* Expertise Tags */
     .expertise-tags {
       display: flex;
       flex-wrap: wrap;
@@ -154,7 +147,6 @@
       font-weight: 500;
     }
 
-    /* Contact Card */
     .contact-card .contact-row {
       display: flex;
       align-items: center;
@@ -201,7 +193,6 @@
       color: #b366ff;
     }
 
-    /* Stats Row */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -233,7 +224,6 @@
       letter-spacing: 1px;
     }
 
-    /* CTA */
     .profile-cta {
       display: block;
       width: 100%;
@@ -264,7 +254,7 @@
       color: rgba(255,255,255,0.5);
       font-size: 0.85rem;
       text-decoration: none;
-      margin: 20px 0 20px 0;
+      margin: 20px 0;
       transition: color 0.2s;
     }
 
@@ -276,7 +266,6 @@
     @media (max-width: 768px) {
       .profile-grid { grid-template-columns: 1fr; }
       .profile-top { flex-direction: column; align-items: center; text-align: center; }
-      .stats-row { grid-template-columns: repeat(3, 1fr); }
       .profile-identity h1 { font-size: 1.8rem; }
     }
   </style>
@@ -302,7 +291,6 @@
         </div>
       </div>
 
-      <!-- Stats -->
       <div class="stats-row">
         <div class="stat-box">
           <span class="stat-num"><%= new Date().getFullYear() - manager.joinYear %>+</span>
@@ -319,13 +307,11 @@
       </div>
 
       <div class="profile-grid">
-        <!-- Left Column -->
         <div>
           <div class="profile-section">
             <h2>About</h2>
             <p><%= manager.bio %></p>
           </div>
-
           <div class="profile-section">
             <h2>Areas of Expertise</h2>
             <div class="expertise-tags">
@@ -336,11 +322,9 @@
           </div>
         </div>
 
-        <!-- Right Column -->
         <div>
           <div class="profile-section contact-card">
             <h2>Contact</h2>
-
             <div class="contact-row">
               <div class="contact-icon">📧</div>
               <div>
@@ -348,7 +332,6 @@
                 <a href="mailto:<%= manager.email %>" class="contact-value"><%= manager.email %></a>
               </div>
             </div>
-
             <div class="contact-row">
               <div class="contact-icon">📍</div>
               <div>
@@ -356,7 +339,6 @@
                 <p class="contact-value">Bay Area, CA</p>
               </div>
             </div>
-
             <div class="contact-row">
               <div class="contact-icon">🕐</div>
               <div>
@@ -364,7 +346,6 @@
                 <p class="contact-value">Within 24–48 hrs</p>
               </div>
             </div>
-
             <a href="/contact" class="profile-cta">🎤 Book The Band</a>
           </div>
         </div>

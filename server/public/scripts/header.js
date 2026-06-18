@@ -1,7 +1,5 @@
-// Select the header element
-let header = document.querySelector('header');
+const header = document.querySelector('header');
 
-// Populate the header dynamically
 header.innerHTML = `
   <div class="band-header">
     <div class="logo">
@@ -9,10 +7,10 @@ header.innerHTML = `
         <span>Mr.LeoRhythmAndSoulBand</span>
       </a>
     </div>
-    <nav class="menu">
+    <nav class="menu" id="mainNav">
       <a href="/Tour">Shows</a>
       <a href="/Performance">Performance</a>
-      <a href="/theCrew">The Crew</a> 
+      <a href="/theCrew">The Crew</a>
       <a href="/Gallery">Gallery</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -27,5 +25,26 @@ header.innerHTML = `
         <i class="fab fa-youtube"></i>
       </a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 `;
+
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('mainNav');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  nav.classList.toggle('open');
+});
+
+// Close menu when a nav link is clicked
+nav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    nav.classList.remove('open');
+  });
+});
