@@ -52,8 +52,9 @@
 
   <!-- Next Show Spotlight -->
   <%
+    const _today = new Date(); _today.setHours(0,0,0,0);
     const nextShow = tours
-      .filter(t => new Date(t.dateMonth + ' ' + t.dateDay + ', ' + t.dateYear) >= new Date())
+      .filter(t => new Date(t.dateMonth + ' ' + t.dateDay + ', ' + t.dateYear) >= _today)
       .sort((a, b) => new Date(a.dateMonth + ' ' + a.dateDay + ', ' + a.dateYear) - new Date(b.dateMonth + ' ' + b.dateDay + ', ' + b.dateYear))[0];
   %>
   <% if (nextShow) { %>

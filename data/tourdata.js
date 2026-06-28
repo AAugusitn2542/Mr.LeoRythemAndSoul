@@ -118,7 +118,26 @@ const toursData = [
     parking: "Available on-site and nearby streets",
     supportActs: "Opening acts to be announced"
   },
-
+  {
+    venue: "Boom Boom Room",
+    city: "San Francisco",
+    state: "CA",
+    dateMonth: "June",
+    dateDay: "27",
+    dateYear: "2026",
+    fullDate: "Sat, June 27, 2026",
+    doorsOpenTime: "9:00 PM",
+    dayOfWeek: "Sat",
+    capacity: 100,
+    priceRange: "Free Admission",
+    status: "Free Admission",
+    badgeColor: "#22c55e",
+    eventType: null,
+    image: "/images/boom_boom.jpg",
+    ageRestriction: "21+ only",
+    parking: "Available on-site and nearby streets",
+    supportActs: "Opening acts to be announced"
+  },
   {
     venue: "The World Famous Turf Club",
     city: "Hayward",
