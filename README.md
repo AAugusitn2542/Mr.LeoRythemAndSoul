@@ -2,9 +2,9 @@
 
 > A passion project built for my mom's band.
 
-🌐 **Live Site:** [www.yourdomainhere.com](https://mrleorhythmandsoulband.com/)
+🌐 **Live Site:** (https://mrleorhythmandsoulband.com/)
 
-My mom has beenan booking manager with Mr. Leo Rhythm & Soul Band for years — playing events and local venues. But when people wanted to book them, there was no easy way to reach out, no place to see the band in action, and no professional online presence to point clients to.
+My mom has been a booking manager with Mr. Leo Rhythm & Soul Band for years — playing events and local venues. But when people wanted to book them, there was no easy way to reach out, no place to see the band in action, and no professional online presence to point clients to.
 
 So I built one.
 
